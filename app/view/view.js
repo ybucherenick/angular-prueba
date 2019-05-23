@@ -12,7 +12,6 @@
       $log,
       $NodoClient
     ) {
-
       $scope.servidores = [];
       loadData();
 
@@ -27,23 +26,23 @@
             $scope.servidores = _resolves.data.servidores;
             // Busco las relaciones de cada servidor
             for (const item of $scope.servidores) {
-              chain =  chain.then(function(){
-                  $NodoClient.getRelacion(item.id).then(
-                function(_resolves2){
-                  item.conectado = _resolves2.data.conectados;
-                },
-                function(_error) {
+              chain = chain.then(function () {
+                $NodoClient.getRelacion(item.id).then(
+                  function (_resolves2) {
+                    item.conectado = _resolves2.data.conectados;
+                  },
+                  function (_error) {
                     $log.error(_error);
-                })
+                  })
               });
             }
 
-            chain.then(function(){
+            chain.then(function () {
               setTimeout(() => {
-                mostrarGrafica();  
+                mostrarGrafica();
               }, 100);
             });
-          
+
           },
           function (_error) {
             $log.error(_error);
@@ -92,11 +91,21 @@
         nodeTemplate.events.on("out", function (event) {
           var dataItem = event.target.dataItem;
           dataItem.childLinks.each(function (link) {
-              link.isHover = false;
+            link.isHover = false;
           })
         })
 
+        // Evento del Modal
+        nodeTemplate.events.on("hit", function (event) {
+          setTimeout(() => {
+            $("#modalNodo").modal({show: true});
+          }, 100);
 
+          $scope.$apply(function () {
+            $scope.dataItem = event.target.dataItem;
+          });
+        })
+        
         networkSeries.data = $scope.servidores;
 
       }

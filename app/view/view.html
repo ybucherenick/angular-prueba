@@ -1,2 +1,40 @@
-<p>Prueba Técnica</p>
+<h1>Servidores</h1>
 <div id="chartdiv"></div>
+
+<div class="modal inmodal" id="modalNodo" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content animated bounceInRight">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                                <span aria-hidden="true">&times;</span>
+                                <span class="sr-only">Close</span>
+                            </button>
+
+                <h4 class="modal-title">Información Servidor</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group cus">
+                    <p>
+                        <label class="font-normal ">ID: {{dataItem.id}}</label>
+                    </p>
+                    <p>
+                        <label class="font-normal ">Paíd: {{dataItem.pais}}</label>
+                    </p>
+                    <p>
+                        <label class="font-normal ">Grupo: {{dataItem.grupo}}</label>
+                    </p>
+                    <p>
+                        <label class="font-normal ">Host: {{dataItem.host}}</label>
+                    </p>
+                    <p>
+                        <label class="font-normal ">Servicio: {{dataItem.servicio}}</label>
+                    </p>
+                </div>
+
+            </div>
+            <div class="modal-footer ">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Ok!</button>
+            </div>
+        </div>
+    </div>
+</div>
